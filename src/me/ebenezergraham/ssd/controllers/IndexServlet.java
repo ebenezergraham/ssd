@@ -7,37 +7,32 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet( name = "IndexServlet",urlPatterns = "/index")
 public class IndexServlet extends HttpServlet {
-	private FileService fileService = new FileService();
+
 	@Override
 	protected void doGet(HttpServletRequest request,
 	                     HttpServletResponse response){
-		fileService.response = response;
-		fileService.request = request;
-		// Entry point for the thread
+		FileService fileService = new FileService(request,response);
 		fileService.run();
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request,
 	                      HttpServletResponse response){
-		fileService.response = response;
-		fileService.request = request;
+		FileService fileService = new FileService(request,response);
 		fileService.run();
 	}
 	
 	@Override
 	protected void doDelete(HttpServletRequest request,
 	                        HttpServletResponse response) {
-		fileService.response = response;
-		fileService.request = request;
+		FileService fileService = new FileService(request,response);
 		fileService.run();
 	}
 	
 	@Override
 	protected void doPut(HttpServletRequest request,
 	                        HttpServletResponse response) {
-		fileService.response = response;
-		fileService.request = request;
+		FileService fileService = new FileService(request,response);
 		fileService.run();
 	}
 }
