@@ -7,12 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet( name = "IndexServlet",urlPatterns = "/index")
 public class IndexServlet extends HttpServlet {
-	FileService fileService = new FileService();
+	private FileService fileService = new FileService();
 	@Override
 	protected void doGet(HttpServletRequest request,
 	                     HttpServletResponse response){
 		fileService.response = response;
 		fileService.request = request;
+		// Entry point for the thread
 		fileService.run();
 	}
 	

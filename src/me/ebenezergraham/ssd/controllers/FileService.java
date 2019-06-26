@@ -3,6 +3,7 @@ package me.ebenezergraham.ssd.controllers;
 ebenezergraham created on 5/30/19
 */
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,7 +48,7 @@ public class FileService extends Thread {
 	public void getFile() {
 		try {
 			System.out.println("FileService::getFile " + Thread.currentThread().getId());
-			request.setAttribute("payload", "Hello SSD");
+			request.setAttribute("payload", "was returned by a new Thread with Id: "+Thread.currentThread().getId());
 			request.getRequestDispatcher("document.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -57,7 +58,6 @@ public class FileService extends Thread {
 	public void postFile() {
 		try {
 			System.out.println("FileService::postFile " + Thread.currentThread().getId());
-			
 			request.setAttribute("payload", "Posted Data");
 			request.getRequestDispatcher("document.jsp").forward(request, response);
 		} catch (Exception e) {
@@ -68,7 +68,6 @@ public class FileService extends Thread {
 	public void deleteFile() {
 		try {
 			System.out.println("FileService::deleteFile " + Thread.currentThread().getId());
-			
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
 			response.setHeader("payload", "I can't delete this file because then I have to create it again");
 			response.getWriter().println("I can't/don't want to delete this file because then I have to create it again");
